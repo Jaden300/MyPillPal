@@ -1,0 +1,19 @@
+# Internal working material, stays local
+CLAUDE.md
+docs/prd.md
+
+# Dependencies and build output
+node_modules/
+dist/
+.vite/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor and OS
+.DS_Store
+.idea/
+.vscode/
+.claude/settings.local.json
