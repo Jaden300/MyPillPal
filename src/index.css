@@ -1,0 +1,349 @@
+@import 'tailwindcss';
+
+/*
+  Every token here comes from docs/conventions.md. That file is the single
+  source of truth. Do not add a colour or a type size that is not in it.
+*/
+
+@theme {
+  /* Palette, light mode. Dark overrides live in the media query below. */
+  --color-ink: #0b1f1c;
+  --color-ink-muted: #455957;
+  --color-ground: #faf7f2;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #f3efe8;
+  --color-border: #e2dbd0;
+  --color-border-strong: #8e8271;
+  --color-primary: #0a5f5a;
+  --color-primary-hover: #084e4a;
+  --color-primary-mid: #0e7a72;
+  --color-primary-soft: #d6ede9;
+  --color-primary-tint: #eaf6f4;
+  --color-on-primary: #ffffff;
+  --color-accent: #a8371f;
+  --color-accent-fill: #e4633f;
+  --color-accent-soft: #fbe3da;
+  --color-risk-low: #1a5c42;
+  --color-risk-moderate: #7a4200;
+  --color-risk-elevated: #9b2b22;
+
+  /*
+    Two families. A display serif for headings and stat numbers, a text sans
+    for anything a reader has to get through in volume.
+
+    Sizes clamp so a 320px phone never wraps a heading to four lines. There is
+    nothing below 15px in this scale on purpose: the caption tier was removed
+    rather than shrunk, because explanatory copy either matters at body size or
+    does not belong on the screen at all.
+  */
+  --text-hero: clamp(34px, 6.4vw + 8px, 52px);
+  --text-hero--line-height: 1.06;
+  --text-hero--font-weight: 700;
+  --text-hero--letter-spacing: -0.02em;
+
+  --text-display: clamp(28px, 4.4vw + 12px, 38px);
+  --text-display--line-height: 1.12;
+  --text-display--font-weight: 700;
+  --text-display--letter-spacing: -0.015em;
+
+  --text-h2: clamp(21px, 1.2vw + 17px, 25px);
+  --text-h2--line-height: 1.25;
+  --text-h2--font-weight: 600;
+  --text-h2--letter-spacing: -0.01em;
+
+  --text-h3: 18px;
+  --text-h3--line-height: 1.35;
+  --text-h3--font-weight: 600;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.55;
+  --text-body-lg--font-weight: 400;
+
+  --text-body: 16px;
+  --text-body--line-height: 1.6;
+  --text-body--font-weight: 400;
+
+  --text-label: 16px;
+  --text-label--line-height: 1.2;
+  --text-label--font-weight: 500;
+
+  --text-eyebrow: 15px;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--font-weight: 600;
+  --text-eyebrow--letter-spacing: 0.08em;
+
+  --text-stat: clamp(30px, 3.6vw + 16px, 44px);
+  --text-stat--line-height: 1;
+  --text-stat--font-weight: 700;
+  --text-stat--letter-spacing: -0.02em;
+
+  --font-display: Fraunces, Georgia, 'Times New Roman', serif;
+  --font-sans:
+    'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+
+  /* Spacing scale is the Tailwind 4px default, which matches conventions. */
+
+  --radius-panel: 22px;
+  --radius-card: 16px;
+  --radius-button: 12px;
+  --radius-control: 10px;
+
+  --shadow-card:
+    0 1px 2px rgba(11, 31, 28, 0.05), 0 6px 16px -4px rgba(11, 31, 28, 0.07);
+  --shadow-raised:
+    0 2px 4px rgba(11, 31, 28, 0.06), 0 14px 34px -10px rgba(11, 31, 28, 0.14);
+  --shadow-popover:
+    0 4px 8px rgba(11, 31, 28, 0.07), 0 18px 44px -12px rgba(11, 31, 28, 0.22);
+
+  /* One easing curve and three durations for the whole app. */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 120ms;
+  --duration-base: 220ms;
+  --duration-slow: 420ms;
+}
+
+/*
+  Dark mode overrides the token values on :root rather than opening a second
+  @theme block. A nested @theme is hoisted out of the media query by Tailwind
+  and would silently overwrite the light palette everywhere.
+*/
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-ink: #e8f1ee;
+    --color-ink-muted: #a3b8b4;
+    --color-ground: #0b1614;
+    --color-surface: #132320;
+    --color-surface-sunken: #1a2e2a;
+    --color-border: #28403b;
+    --color-border-strong: #658078;
+    --color-primary: #4fc7ba;
+    --color-primary-hover: #6bd6ca;
+    --color-primary-mid: #2e9e93;
+    --color-primary-soft: #12403b;
+    --color-primary-tint: #0f332f;
+    /* A light primary needs dark text on top of it, never white. */
+    --color-on-primary: #0b1614;
+    --color-accent: #ff9b7a;
+    --color-accent-fill: #ff9b7a;
+    --color-accent-soft: #3a2119;
+    --color-risk-low: #5fcb9c;
+    --color-risk-moderate: #e7b15c;
+    --color-risk-elevated: #f58174;
+
+    /* Shadows do almost nothing on a dark ground. Deepen them instead. */
+    --shadow-card:
+      0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 16px -4px rgba(0, 0, 0, 0.45);
+    --shadow-raised:
+      0 2px 4px rgba(0, 0, 0, 0.45), 0 14px 34px -10px rgba(0, 0, 0, 0.55);
+    --shadow-popover:
+      0 4px 8px rgba(0, 0, 0, 0.5), 0 18px 44px -12px rgba(0, 0, 0, 0.65);
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light dark;
+  }
+
+  body {
+    background-color: var(--color-ground);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Headings carry the display face. Stat numbers opt in with .display. */
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+  }
+
+  /*
+    Focus ring: 2px primary with a 2px offset, visible on every interactive
+    element. Never remove the outline without replacing it.
+
+    Tailwind's transition-colors animates outline-color, which makes the ring
+    fade in from the element's text colour instead of appearing at once. A
+    keyboard user needs to see where they are immediately, so the transition is
+    cancelled for the outline only. Everything else still animates.
+  */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 3px;
+    transition-duration: 0s;
+    transition-delay: 0s;
+  }
+
+  /*
+    Screen headings are focused programmatically on every step change, so a
+    screen reader announces the screen it just arrived at. Chromium counts that
+    as :focus-visible and draws the ring around the title, which reads as a
+    rendering fault to everyone else.
+
+    The focus itself has to stay: it is what moves the reader to the top of the
+    new screen. Only the ring goes. This is safe because these headings are not
+    tab stops (tabindex -1) and cannot be reached by keyboard navigation, so no
+    one is ever navigating to one and needing to see where they are.
+  */
+  h1[tabindex='-1']:focus,
+  h1[tabindex='-1']:focus-visible {
+    outline: none;
+  }
+
+  /* Numbers in resistance figures line up in columns. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /*
+    A chart bar drawing itself in from the left, and a screen arriving. Both
+    are CSS animations rather than JS, so the reduced motion rule below
+    switches them off without either component knowing about the query.
+  */
+  @keyframes grow-bar {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes screen-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .screen-enter {
+    animation: screen-in var(--duration-base) var(--ease-out-soft) both;
+  }
+
+  /*
+    Every animation in the app is opt out. One global rule is more reliable
+    than remembering the check at each call site. Durations collapse to a value
+    that is effectively instant but not zero, so transitionend still fires and
+    nothing waiting on it hangs.
+
+    Two things this cannot reach: the stat tile count up, which is a rAF loop,
+    and anything driven by JS interpolation. Those check the media query
+    directly through usePrefersReducedMotion.
+  */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/*
+  Print rules for the summary screen, the page a user carries to an appointment.
+
+  Two things drive this block. Browsers drop background colours by default when
+  printing, so anything whose meaning lived in a fill needs a border or a stroke
+  instead: the chart bars, the gridlines, the gauge arc, the tinted panels, and
+  the risk tier stripe. And the palette is forced back to light regardless of
+  the reader's dark mode setting, since a dark background either wastes ink or
+  prints as an unreadable blank.
+
+  The standing rule: no meaning may live in a gradient or a shadow. Anything
+  using one must also carry a border, a stroke, or text that says the same.
+*/
+@media print {
+  :root {
+    --color-ink: #0b1f1c;
+    --color-ink-muted: #3f534f;
+    --color-ground: #ffffff;
+    --color-surface: #ffffff;
+    /* Decorative washes flatten to white on paper. Meaning moves to borders. */
+    --color-surface-sunken: #ffffff;
+    --color-primary-tint: #ffffff;
+    --color-accent-fill: #ffffff;
+    --color-accent-soft: #ffffff;
+    --color-border: #b4ac9e;
+    --color-border-strong: #8e8271;
+    --color-primary: #0a5f5a;
+    --color-primary-hover: #0a5f5a;
+    --color-primary-mid: #0a5f5a;
+    --color-primary-soft: #d6ede9;
+    --color-on-primary: #0b1f1c;
+    --color-accent: #8e2a14;
+    --color-risk-low: #1a5c42;
+    --color-risk-moderate: #7a4200;
+    --color-risk-elevated: #9b2b22;
+
+    /* Paper has no depth. Shadows print as grey smears. */
+    --shadow-card: none;
+    --shadow-raised: none;
+    --shadow-popover: none;
+  }
+
+  @page {
+    margin: 16mm;
+  }
+
+  html,
+  body {
+    background: #fff;
+  }
+
+  /*
+    Ask for the fills we do rely on. Honoured by Chrome and Safari, ignored by
+    others, which is why every one of them also has a border to fall back on.
+  */
+  svg rect,
+  svg circle,
+  svg path,
+  .bg-primary-soft {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Chart bars must stay visible when a browser drops the fill entirely. */
+  svg rect {
+    stroke: var(--color-primary);
+    stroke-width: 0.5;
+  }
+
+  /* Nothing interactive means anything on paper. */
+  button {
+    display: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
+  }
+}
