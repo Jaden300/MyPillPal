@@ -143,9 +143,16 @@ reader does not announce the name twice.
 
 ## Background watermark
 
-A tiled PillPal pattern sits behind the page at 5 percent opacity, 7 percent in
-dark mode. It is `position: fixed` at `z-index: -1` with pointer events off, so
-it stays clear of the sticky header, the `Select` popover, and every focus ring.
+A tiled PillPal pattern sits behind the page at 10 percent opacity, 13 percent
+in dark mode. It is `position: fixed` at `z-index: 0` with pointer events off,
+so it stays clear of the sticky header, the `Select` popover, and every focus
+ring.
+
+The index is 0, not -1. A negative index puts the pseudo element behind
+`body`'s own opaque `background-color`, which paints the watermark out
+completely. Instead `#root` is given `position: relative` and `z-index: 1`, so
+the app content sits above the watermark and the watermark sits above the
+ground. If either value is changed, both must move together.
 
 Cards and panels keep an opaque `surface` background, which is what keeps every
 ratio in the contrast table above true: no body copy is ever read against the
