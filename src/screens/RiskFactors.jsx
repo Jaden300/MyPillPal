@@ -6,7 +6,15 @@ import RiskGauge from '../components/RiskGauge.jsx'
 import Select from '../components/Select.jsx'
 import { Card, Eyebrow } from '../components/Card.jsx'
 import { ArrowRightIcon, LockIcon } from '../components/Icons.jsx'
+import PillPal from '../components/PillPal.jsx'
 import { RISK_TIERS, MAX_RISK_SCORE } from '../lib/scoreRisk.js'
+
+/*
+  One pose per factor group heading, in group order. Neutral poses only. These
+  headings sit above questions about the reader's own health, so nothing here
+  should read as a reaction to their answers.
+*/
+const GROUP_POSES = ['holdingClipboard', 'reading', 'walking', 'sitting']
 
 /*
   Screen 2: risk factor checklist.
@@ -58,9 +66,17 @@ export default function RiskFactors({ answers, risk, onChange, onBack, onContinu
 
       <div className="mt-10 grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,17rem)]">
         <div className="space-y-10">
-          {FACTOR_GROUPS.map((group) => (
+          {FACTOR_GROUPS.map((group, index) => (
             <section key={group.id}>
-              <h2 className="text-h2 text-ink">{group.label}</h2>
+              <div className="flex items-end justify-between gap-4">
+                <h2 className="text-h2 text-ink">{group.label}</h2>
+                <PillPal
+                  size={40}
+                  pose={GROUP_POSES[index % GROUP_POSES.length]}
+                  decorative
+                  className="hidden shrink-0 sm:block print:hidden"
+                />
+              </div>
 
               <div className="mt-4 space-y-3">
                 {getFactorsForGroup(group.id).map((factor) => {
@@ -134,7 +150,21 @@ export default function RiskFactors({ answers, risk, onChange, onBack, onContinu
         </div>
 
         {/* Desktop: the meter rides alongside the form. */}
-        <Card tone="surface" pad="lg" className="sticky top-32 hidden lg:block">
+        <Card
+          tone="surface"
+          pad="lg"
+          className="relative isolate sticky top-32 hidden overflow-hidden lg:block"
+        >
+          {/*
+            Deliberately a neutral pose. This card sits beside a live risk
+            score, so a reacting mascot would read as a judgement on it.
+          */}
+          <PillPal
+            size={96}
+            pose="thinking"
+            decorative
+            className="pointer-events-none absolute -bottom-5 -right-4 -z-10 opacity-[0.12] print:hidden"
+          />
           <Eyebrow>Running score</Eyebrow>
           <div className="mt-5">
             <RiskGauge

@@ -3,6 +3,8 @@
   the same class string a dozen times and vertical rhythm is defined once.
 */
 
+import PillPal from './PillPal.jsx'
+
 const CARD_TONES = {
   surface: 'bg-surface border-border',
   sunken: 'bg-surface-sunken border-border',
@@ -62,18 +64,32 @@ export function Section({
   eyebrow,
   title,
   titleId,
+  pose,
   className = '',
   children,
   ...props
 }) {
   return (
     <section className={`mt-12 first:mt-0 ${className}`} {...props}>
-      {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      {title ? (
-        <h2 id={titleId} className="mt-2 text-h2 text-ink">
-          {title}
-        </h2>
-      ) : null}
+      <div className="flex items-end justify-between gap-4">
+        <div className="min-w-0">
+          {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
+          {title ? (
+            <h2 id={titleId} className="mt-2 text-h2 text-ink">
+              {title}
+            </h2>
+          ) : null}
+        </div>
+
+        {/*
+          Decorative only. The heading beside it already carries the meaning,
+          so the mascot is hidden from assistive tech and dropped in print and
+          on narrow screens, where the heading needs the width.
+        */}
+        {pose ? (
+          <PillPal size={44} pose={pose} decorative className="hidden shrink-0 sm:block print:hidden" />
+        ) : null}
+      </div>
       {children}
     </section>
   )

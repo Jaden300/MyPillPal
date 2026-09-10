@@ -141,6 +141,22 @@ shrunk. The component handles this from its `size` prop:
 Pass `decorative` when the mark sits next to the word MyPillPal, so a screen
 reader does not announce the name twice.
 
+### Poses as card decoration
+
+Cards that would otherwise be an icon and two lines of text carry a large pose
+bleeding off the bottom right corner, at 11 to 12 percent opacity behind the
+content. The card needs `relative isolate overflow-hidden` and the mascot needs
+`-z-10`, so it sits behind the copy rather than over it. Always `decorative`,
+always `print:hidden`.
+
+`Section` takes an optional `pose`, which puts a 44px mascot at the right end
+of the heading row. Hidden below `sm`, where the heading needs the width.
+
+Twelve of the fifteen poses are in use. `celebrating` is deliberately unused:
+it breaks the rule against a celebratory pose near results. `shrugging` and
+`sleeping` are unused because they read as the tool being unsure or
+disengaged, which is not what a health tool should project.
+
 ## Background watermark
 
 A tiled PillPal pattern sits behind the page at 5.5 percent opacity, 7.5

@@ -13,6 +13,16 @@ import PillPal from '../components/PillPal.jsx'
 
 const STAT_ICONS = [GlobeIcon, MapPinIcon, AlertIcon]
 
+// A different pose per tile, so three identical boxes stop reading as one.
+const STAT_POSES = ['magnifying', 'pointing', 'thinking']
+
+/*
+  One pose per infection card, keyed by index. Purely decorative variety: no
+  pose carries any meaning about the infection it sits beside, which matters
+  because this app never implies anything about what you have.
+*/
+const CARD_POSES = ['reading', 'holdingClipboard', 'talking', 'sitting', 'walking']
+
 /*
   Screen 1: welcome and infection selection.
 
@@ -61,6 +71,7 @@ export default function InfectionSelect({ selectedId, onSelect }) {
             source={stat.source}
             year={stat.year}
             icon={STAT_ICONS[index]}
+            pose={STAT_POSES[index]}
             // One coral element per screen, and this is it.
             tone={index === 2 ? 'accent' : 'default'}
           />
@@ -74,7 +85,7 @@ export default function InfectionSelect({ selectedId, onSelect }) {
         </h2>
 
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
-          {INFECTIONS.map((infection) => {
+          {INFECTIONS.map((infection, index) => {
             const isSelected = infection.id === selectedId
 
             return (
@@ -83,12 +94,18 @@ export default function InfectionSelect({ selectedId, onSelect }) {
                 type="button"
                 onClick={() => onSelect(infection.id)}
                 aria-pressed={isSelected}
-                className={`group flex items-start gap-4 rounded-card border p-5 text-left shadow-card transition-[border-color,background-color,box-shadow,transform] duration-[var(--duration-fast)] ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:shadow-raised ${
+                className={`group relative isolate flex items-start gap-4 overflow-hidden rounded-card border p-5 text-left shadow-card transition-[border-color,background-color,box-shadow,transform] duration-[var(--duration-fast)] ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:shadow-raised ${
                   isSelected
                     ? 'border-primary bg-primary-soft'
                     : 'border-border-strong bg-surface hover:border-primary'
                 }`}
               >
+                <PillPal
+                  size={92}
+                  pose={CARD_POSES[index % CARD_POSES.length]}
+                  decorative
+                  className="pointer-events-none absolute -bottom-4 right-2 -z-10 opacity-[0.11] print:hidden"
+                />
                 <span
                   className={`flex size-12 shrink-0 items-center justify-center rounded-control transition-colors duration-[var(--duration-fast)] ${
                     isSelected

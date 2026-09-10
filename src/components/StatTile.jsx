@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { Card } from './Card.jsx'
+import PillPal from './PillPal.jsx'
 import usePrefersReducedMotion from '../lib/usePrefersReducedMotion.js'
 
 /*
@@ -81,12 +82,27 @@ export default function StatTile({
   icon: Icon,
   tone = 'default',
   animate = true,
+  pose,
 }) {
   const shown = useCountUp(value, animate)
   const isAccent = tone === 'accent'
 
   return (
-    <Card as="li" pad="md" className="flex flex-col gap-3">
+    <Card as="li" pad="md" className="relative isolate flex flex-col gap-3 overflow-hidden">
+      {/*
+        A large PillPal bleeding off the bottom right corner, well behind the
+        figure. Decorative and print hidden: the number is the content, this is
+        just what stops the tile reading as an empty box.
+      */}
+      {pose ? (
+        <PillPal
+          size={104}
+          pose={pose}
+          decorative
+          className="pointer-events-none absolute -bottom-5 -right-4 -z-10 opacity-[0.12] print:hidden"
+        />
+      ) : null}
+
       {Icon ? (
         <span
           className={`flex size-10 items-center justify-center rounded-control ${

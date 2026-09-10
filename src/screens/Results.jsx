@@ -24,6 +24,13 @@ import { CheckIcon, PrinterIcon } from '../components/Icons.jsx'
 import PillPal from '../components/PillPal.jsx'
 
 /*
+  Decorative poses for the stewardship tiles. Neutral and encouraging ones
+  only: nothing celebratory anywhere on this screen, since a cheering mascot
+  beside a risk profile reads as a verdict on it.
+*/
+const TIP_POSES = ['holdingClipboard', 'reading', 'pointing', 'walking', 'sitting', 'thinking']
+
+/*
   Screen 4, the payoff. Four sections, in the order the PRD sets out:
 
     A  Your risk level
@@ -129,10 +136,16 @@ export default function Results({
         </div>
       </Section>
 
+      {/*
+        Section A gets no mascot. It sits directly under the BoundaryNote, and
+        PillPal never appears beside a disclaimer. B onward are far enough down
+        the page to be clear of it.
+      */}
       <Section
         eyebrow="Section B"
         title={`Resistance in ${regionInPhrase(region)}`}
         titleId="resistance-heading"
+        pose="magnifying"
       >
         {rows.length === 0 ? (
           <p className="mt-4 max-w-[62ch] text-body text-ink-muted">
@@ -175,7 +188,7 @@ export default function Results({
         )}
       </Section>
 
-      <Section eyebrow="Section C" title="Your doctor conversation guide">
+      <Section eyebrow="Section C" title="Your doctor conversation guide" pose="talking">
         {/*
           The framing that used to sit here as a grey paragraph. It is a real
           point, not boilerplate: these are starting points, and a doctor who
@@ -209,10 +222,16 @@ export default function Results({
         </ol>
       </Section>
 
-      <Section eyebrow="Section D" title="What you can do">
+      <Section eyebrow="Section D" title="What you can do" pose="thumbsUp">
         <ul className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {STEWARDSHIP_TIPS.map((tip) => (
-            <Card as="li" key={tip.id} pad="md">
+          {STEWARDSHIP_TIPS.map((tip, index) => (
+            <Card as="li" key={tip.id} pad="md" className="relative isolate overflow-hidden">
+              <PillPal
+                size={88}
+                pose={TIP_POSES[index % TIP_POSES.length]}
+                decorative
+                className="pointer-events-none absolute -bottom-4 -right-3 -z-10 opacity-[0.12] print:hidden"
+              />
               <span className="flex size-9 items-center justify-center rounded-full bg-primary-tint text-primary">
                 <CheckIcon width={18} height={18} />
               </span>

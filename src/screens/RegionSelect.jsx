@@ -12,6 +12,7 @@ import Select from '../components/Select.jsx'
 import SourceChip from '../components/SourceChip.jsx'
 import { Card, Eyebrow } from '../components/Card.jsx'
 import { ArrowDownIcon, ArrowRightIcon, ArrowUpIcon } from '../components/Icons.jsx'
+import PillPal from '../components/PillPal.jsx'
 
 /*
   Screen 3: region selection.
@@ -138,7 +139,13 @@ export default function RegionSelect({
         />
 
         {top ? (
-          <Card tone="surface" pad="lg">
+          <Card tone="surface" pad="lg" className="relative isolate overflow-hidden">
+            <PillPal
+              size={104}
+              pose="presentingChart"
+              decorative
+              className="pointer-events-none absolute -bottom-5 -right-4 -z-10 opacity-[0.12] print:hidden"
+            />
             <Eyebrow>{isNational ? 'The national picture' : `How ${region.name} compares`}</Eyebrow>
 
             <h2 className="mt-2 text-h3 text-ink">
