@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <!--
+    Seamless PillPal watermark tile.
+
+    Every mark is drawn in a single flat currentColor-independent fill so the
+    opacity is controlled entirely from CSS. Marks that cross an edge are drawn
+    twice, once on each side, so the pattern tiles without a visible seam.
+  -->
+  <defs>
+    <g id="p" fill="#4A9FB5">
+      <path d="M4,33 L4,47 Q4,64 20,64 Q36,64 36,47 L36,33 Z" opacity="0.55"/>
+      <path d="M4,33 L4,19 Q4,2 20,2 Q36,2 36,19 L36,33 Z"/>
+      <rect x="4" y="31" width="32" height="3"/>
+      <circle cx="13" cy="22" r="3"/>
+      <circle cx="27" cy="22" r="3"/>
+      <path d="M13,42 Q20,49 27,42" fill="none" stroke="#4A9FB5" stroke-width="2.4" stroke-linecap="round"/>
+    </g>
+  </defs>
+
+  <g>
+    <use href="#p" transform="translate(28 20) rotate(-18 20 33)"/>
+    <use href="#p" transform="translate(150 54) rotate(24 20 33) scale(0.8)"/>
+    <use href="#p" transform="translate(262 14) rotate(-40 20 33) scale(1.1)"/>
+    <use href="#p" transform="translate(92 140) rotate(52 20 33) scale(0.9)"/>
+    <use href="#p" transform="translate(214 168) rotate(-8 20 33)"/>
+    <use href="#p" transform="translate(316 128) rotate(34 20 33) scale(0.75)"/>
+    <use href="#p" transform="translate(20 236) rotate(12 20 33) scale(1.05)"/>
+    <use href="#p" transform="translate(142 268) rotate(-30 20 33) scale(0.85)"/>
+    <use href="#p" transform="translate(268 288) rotate(62 20 33)"/>
+    <use href="#p" transform="translate(196 -12) rotate(70 20 33) scale(0.7)"/>
+
+    <!-- Edge repeats so the tile is seamless. -->
+    <use href="#p" transform="translate(-44 128) rotate(34 20 33) scale(0.75)"/>
+    <use href="#p" transform="translate(-12 20) rotate(-18 20 33)" opacity="0"/>
+    <use href="#p" transform="translate(196 348) rotate(70 20 33) scale(0.7)"/>
+    <use href="#p" transform="translate(20 -124) rotate(12 20 33) scale(1.05)"/>
+    <use href="#p" transform="translate(268 -72) rotate(62 20 33)"/>
+  </g>
+</svg>

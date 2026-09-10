@@ -6,23 +6,33 @@
 */
 
 @theme {
-  /* Palette, light mode. Dark overrides live in the media query below. */
-  --color-ink: #0b1f1c;
-  --color-ink-muted: #455957;
-  --color-ground: #faf7f2;
+  /*
+    Palette, light mode. Dark overrides live in the media query below.
+
+    The family comes from the PillPal brand sheet: Teal #4A9FB5, Sky #D6EEF4,
+    Amber #C47A3A, Navy #1C3D4A, Frost #F3F8FA. Sky, Amber, Navy and Frost are
+    used at their exact brand values. Teal is not, because at 3.04:1 on white it
+    fails AA for text and for button labels. It survives here as primary-mid,
+    where the 3:1 non text threshold applies, and inside the mascot art, which
+    is a character rather than a UI surface. Everything that carries text uses a
+    darkened member of the same teal family instead.
+  */
+  --color-ink: #1c3d4a;
+  --color-ink-muted: #4a6570;
+  --color-ground: #f3f8fa;
   --color-surface: #ffffff;
-  --color-surface-sunken: #f3efe8;
-  --color-border: #e2dbd0;
-  --color-border-strong: #8e8271;
-  --color-primary: #0a5f5a;
-  --color-primary-hover: #084e4a;
-  --color-primary-mid: #0e7a72;
-  --color-primary-soft: #d6ede9;
-  --color-primary-tint: #eaf6f4;
+  --color-surface-sunken: #e4eff4;
+  --color-border: #dce8ee;
+  --color-border-strong: #7c8f98;
+  --color-primary: #17607a;
+  --color-primary-hover: #15566b;
+  --color-primary-mid: #2e7f94;
+  --color-primary-soft: #d6eef4;
+  --color-primary-tint: #eaf5f9;
   --color-on-primary: #ffffff;
-  --color-accent: #a8371f;
-  --color-accent-fill: #e4633f;
-  --color-accent-soft: #fbe3da;
+  --color-accent: #8f4e1c;
+  --color-accent-fill: #c47a3a;
+  --color-accent-soft: #f7e7d6;
   --color-risk-low: #1a5c42;
   --color-risk-moderate: #7a4200;
   --color-risk-elevated: #9b2b22;
@@ -110,23 +120,24 @@
 */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-ink: #e8f1ee;
-    --color-ink-muted: #a3b8b4;
-    --color-ground: #0b1614;
-    --color-surface: #132320;
-    --color-surface-sunken: #1a2e2a;
-    --color-border: #28403b;
-    --color-border-strong: #658078;
-    --color-primary: #4fc7ba;
-    --color-primary-hover: #6bd6ca;
-    --color-primary-mid: #2e9e93;
-    --color-primary-soft: #12403b;
-    --color-primary-tint: #0f332f;
+    --color-ink: #e4f1f6;
+    --color-ink-muted: #a6c0cb;
+    --color-ground: #0d1a20;
+    --color-surface: #14262e;
+    --color-surface-sunken: #1b303a;
+    --color-border: #2a424e;
+    --color-border-strong: #5e7c88;
+    --color-primary: #6fc5dc;
+    --color-primary-hover: #93d7e8;
+    /* Brand Teal lands here in dark mode, where it clears the 3:1 fill bar. */
+    --color-primary-mid: #4a9fb5;
+    --color-primary-soft: #123845;
+    --color-primary-tint: #0f2a34;
     /* A light primary needs dark text on top of it, never white. */
-    --color-on-primary: #0b1614;
-    --color-accent: #ff9b7a;
-    --color-accent-fill: #ff9b7a;
-    --color-accent-soft: #3a2119;
+    --color-on-primary: #0d1a20;
+    --color-accent: #e9a45e;
+    --color-accent-fill: #e9a45e;
+    --color-accent-soft: #33230f;
     --color-risk-low: #5fcb9c;
     --color-risk-moderate: #e7b15c;
     --color-risk-elevated: #f58174;
@@ -206,6 +217,66 @@
   }
 
   /*
+    PillPal watermark.
+
+    A tiled mark behind the whole page, fixed so it does not slide under
+    scrolling content and stays cheap to paint. It sits at z-index -1 with
+    pointer events off, which keeps it clear of the sticky header, the Select
+    popover, and every focus ring.
+
+    Cards and panels keep an opaque surface, so no body copy is ever read
+    against this. The watermark is only visible in the gutters and behind the
+    page ground, which is what keeps the measured contrast ratios true.
+
+    It is deliberately static. Nothing in this app animates on a loop.
+  */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url('/pillpal-tile.svg');
+    background-repeat: repeat;
+    background-size: 360px 360px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body::before {
+      opacity: 0.07;
+    }
+  }
+
+  /*
+    PillPal's eyes are brand Navy, which all but disappears against the dark
+    surface. The capsule itself stays its brand teal in both themes, the way a
+    logo does. Only the eyes adapt.
+  */
+  @media (prefers-color-scheme: dark) {
+    .pillpal-eye {
+      fill: #eaf6fb;
+    }
+
+    .pillpal-eye-stroke {
+      stroke: #eaf6fb;
+    }
+  }
+
+  /*
+    Scale rules from the brand sheet. Fine detail turns to mud when the mark is
+    small, so it is dropped rather than shrunk. The component adds these classes
+    from its size prop.
+  */
+  .pillpal-plain .pillpal-detail {
+    display: none;
+  }
+
+  .pillpal-mute .pillpal-mouth {
+    display: none;
+  }
+
+  /*
     A chart bar drawing itself in from the left, and a screen arriving. Both
     are CSS animations rather than JS, so the reduced motion rule below
     switches them off without either component knowing about the query.
@@ -271,8 +342,8 @@
 */
 @media print {
   :root {
-    --color-ink: #0b1f1c;
-    --color-ink-muted: #3f534f;
+    --color-ink: #1c3d4a;
+    --color-ink-muted: #415b66;
     --color-ground: #ffffff;
     --color-surface: #ffffff;
     /* Decorative washes flatten to white on paper. Meaning moves to borders. */
@@ -280,14 +351,14 @@
     --color-primary-tint: #ffffff;
     --color-accent-fill: #ffffff;
     --color-accent-soft: #ffffff;
-    --color-border: #b4ac9e;
-    --color-border-strong: #8e8271;
-    --color-primary: #0a5f5a;
-    --color-primary-hover: #0a5f5a;
-    --color-primary-mid: #0a5f5a;
-    --color-primary-soft: #d6ede9;
-    --color-on-primary: #0b1f1c;
-    --color-accent: #8e2a14;
+    --color-border: #a8bcc4;
+    --color-border-strong: #6d838d;
+    --color-primary: #17607a;
+    --color-primary-hover: #17607a;
+    --color-primary-mid: #17607a;
+    --color-primary-soft: #d6eef4;
+    --color-on-primary: #1c3d4a;
+    --color-accent: #7a410f;
     --color-risk-low: #1a5c42;
     --color-risk-moderate: #7a4200;
     --color-risk-elevated: #9b2b22;
@@ -305,6 +376,15 @@
   html,
   body {
     background: #fff;
+  }
+
+  /*
+    The watermark comes off on paper. The summary is the one artifact a patient
+    carries into an appointment, so it wastes ink and costs legibility on the
+    page that can least afford it.
+  */
+  body::before {
+    display: none;
   }
 
   /*

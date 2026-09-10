@@ -51,7 +51,17 @@ Update as work completes. `[ ]` open, `[x]` done.
 - [x] Live risk meter on screen 2, region comparison on screen 3, impact stats on screen 1
 - [x] Motion pass, all CSS driven so reduced motion is handled globally
 
-## Phase 5: Documentation and presentation
+## Phase 5: Brand pass
+
+- [x] PillPal mascot art replaced with the new logo, 15 poses
+- [x] Palette retuned to the brand colour family, every value contrast measured
+- [x] Brand Teal kept out of text roles, where it fails AA at 3.04:1
+- [x] Favicon and standalone mark shipped, theme-color set
+- [x] Tiled PillPal watermark behind the page, hidden in print
+- [x] Brand colours and mascot rules recorded in conventions.md
+- [x] Imported design folder removed once nothing depended on it
+
+## Phase 6: Documentation and presentation
 
 - [x] README complete
 - [ ] Devpost writeup, all required sections

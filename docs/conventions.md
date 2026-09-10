@@ -3,30 +3,49 @@
 Single source of truth for how MyPillPal looks and sounds. If a colour or a
 type size is not in this file, it does not go in the app.
 
-## Palette: deep teal and warm coral
+## Brand colours
+
+The five named colours from the PillPal brand sheet. These are the identity.
+They appear literally in the mascot art, the mark, and the favicon.
+
+| Name | Hex | Role in the brand |
+|---|---|---|
+| Teal | `#4A9FB5` | Primary, the capsule's top half |
+| Sky | `#D6EEF4` | Secondary, the capsule's bottom half |
+| Amber | `#C47A3A` | Accent, cheeks and highlights |
+| Navy | `#1C3D4A` | Text, the eyes |
+| Frost | `#F3F8FA` | Background |
+
+Brand Teal is **not** the app's `primary`. At 3.04:1 on white it fails WCAG AA
+for text and for button labels. It is used in the mascot art, where it is a
+character rather than a UI surface, and as `primary-mid`, where the 3:1 non
+text threshold applies. Anything carrying text uses a darkened member of the
+same teal family. Sky, Amber, Navy and Frost are used at their exact values.
+
+## Palette: teal and warm amber
 
 Clinical but warm. A well designed patient portal, not a hospital corridor and
-not a toy. Teal carries trust and calm, coral gives PillPal warmth and marks
+not a toy. Teal carries trust and calm, amber gives PillPal warmth and marks
 the one thing on screen that matters most.
 
 | Token | Light | Dark | Use |
 |---|---|---|---|
-| `ink` | `#0B1F1C` | `#E8F1EE` | Body text and headings |
-| `ink-muted` | `#455957` | `#A3B8B4` | Secondary text, rationale lines |
-| `ground` | `#FAF7F2` | `#0B1614` | Page background, warm paper |
-| `surface` | `#FFFFFF` | `#132320` | Cards, panels |
-| `surface-sunken` | `#F3EFE8` | `#1A2E2A` | Chart tracks, inset wells |
-| `border` | `#E2DBD0` | `#28403B` | Decorative hairlines only |
-| `border-strong` | `#8E8271` | `#658078` | Control bounds, unselected card edges |
-| `primary` | `#0A5F5A` | `#4FC7BA` | Buttons, links, active states, chart bars |
-| `primary-hover` | `#084E4A` | `#6BD6CA` | Button hover |
-| `primary-mid` | `#0E7A72` | `#2E9E93` | Lowest chart ramp step, non-text |
-| `primary-soft` | `#D6EDE9` | `#12403B` | Selected cards, tinted fills |
-| `primary-tint` | `#EAF6F4` | `#0F332F` | Section wash, disclosure panels |
-| `on-primary` | `#FFFFFF` | `#0B1614` | Text on a primary fill |
-| `accent` | `#A8371F` | `#FF9B7A` | Coral text and icons, emphasis |
-| `accent-fill` | `#E4633F` | `#FF9B7A` | Mascot, decorative fills only, never text |
-| `accent-soft` | `#FBE3DA` | `#3A2119` | Accent tinted panel |
+| `ink` | `#1C3D4A` | `#E4F1F6` | Body text and headings |
+| `ink-muted` | `#4A6570` | `#A6C0CB` | Secondary text, rationale lines |
+| `ground` | `#F3F8FA` | `#0D1A20` | Page background |
+| `surface` | `#FFFFFF` | `#14262E` | Cards, panels |
+| `surface-sunken` | `#E4EFF4` | `#1B303A` | Chart tracks, inset wells |
+| `border` | `#DCE8EE` | `#2A424E` | Decorative hairlines only |
+| `border-strong` | `#7C8F98` | `#5E7C88` | Control bounds, unselected card edges |
+| `primary` | `#17607A` | `#6FC5DC` | Buttons, links, active states, chart bars |
+| `primary-hover` | `#15566B` | `#93D7E8` | Button hover |
+| `primary-mid` | `#2E7F94` | `#4A9FB5` | Lowest chart ramp step, non-text |
+| `primary-soft` | `#D6EEF4` | `#123845` | Selected cards, tinted fills |
+| `primary-tint` | `#EAF5F9` | `#0F2A34` | Section wash, disclosure panels |
+| `on-primary` | `#FFFFFF` | `#0D1A20` | Text on a primary fill |
+| `accent` | `#8F4E1C` | `#E9A45E` | Amber text and icons, emphasis |
+| `accent-fill` | `#C47A3A` | `#E9A45E` | Decorative fills only, never text |
+| `accent-soft` | `#F7E7D6` | `#33230F` | Accent tinted panel |
 | `risk-low` | `#1A5C42` | `#5FCB9C` | Low risk tier |
 | `risk-moderate` | `#7A4200` | `#E7B15C` | Moderate risk tier |
 | `risk-elevated` | `#9B2B22` | `#F58174` | Elevated risk tier, top chart band |
@@ -38,27 +57,28 @@ estimated. Ratios against `surface` in each mode:
 
 | Pair | Light | Dark |
 |---|---|---|
-| `ink` | 17.12 | 14.16 |
-| `ink-muted` | 7.45 | 7.81 |
-| `border-strong` | 3.76 | 3.81 |
-| `primary` | 7.51 | 7.92 |
-| `primary-hover` | 9.55 | n/a |
-| `primary-mid` | 5.19 | 4.99 |
-| `accent` | 6.50 | 7.93 |
-| `risk-low` | 7.91 | 8.15 |
-| `risk-moderate` | 8.06 | 8.41 |
-| `risk-elevated` | 7.60 | 6.42 |
-| `on-primary` on `primary` | 7.51 | 8.96 |
+| `ink` | 11.57 | 13.53 |
+| `ink-muted` | 6.20 | 8.19 |
+| `border-strong` | 3.37 | 3.50 |
+| `primary` | 7.02 | 7.94 |
+| `primary-hover` | 8.15 | 9.75 |
+| `primary-mid` | 4.59 | 5.14 |
+| `accent` | 6.41 | 7.38 |
+| `risk-low` | 7.91 | 7.81 |
+| `risk-moderate` | 8.06 | 8.05 |
+| `risk-elevated` | 7.60 | 6.15 |
+| `on-primary` on `primary` | 7.02 | 9.02 |
 
-Text on the warm `ground` runs slightly lower and still clears AA
-comfortably: `ink` 16.02, `ink-muted` 6.97, `primary` 7.02, `accent` 6.08.
-Chart fills against the `surface-sunken` track, where the 3:1 non-text
-threshold applies: `primary-mid` 4.53 light and 4.38 dark, `primary` 6.55 and
-6.95, `risk-elevated` 6.63 and 5.64.
+Text on the Frost `ground` runs slightly lower and still clears AA
+comfortably: `ink` 10.80, `ink-muted` 5.79, `primary` 6.56, `accent` 5.99,
+`risk-low` 7.39, `risk-moderate` 7.53, `risk-elevated` 7.10. Chart fills
+against the `surface-sunken` track, where the 3:1 non-text threshold applies:
+`primary-mid` 3.92, `primary` 6.00, `risk-elevated` 6.50.
 
-Every text colour clears WCAG AA (4.5:1) and nearly all clear AAA (7:1).
-`accent-fill` at 3.41 on white is a fill only. Never set text or a meaningful
-icon in it. Use `accent` for those.
+Every text colour clears WCAG AA (4.5:1) and most clear AAA (7:1).
+`accent-fill` at 3.39 on white is a fill only. Never set text or a meaningful
+icon in it. Use `accent` for those. Brand Teal `#4A9FB5` at 3.04 on white is
+likewise never used for text: see the brand colours note above.
 
 `border` at 1.37 is deliberately below 3:1. It is a decorative hairline
 between two surfaces, which WCAG does not regulate. Anything communicating the
@@ -69,7 +89,7 @@ distinction: it is what makes the custom form controls pass an audit.
 
 - Risk tiers always pair colour with a text label and an icon. Never encode a
   risk tier in colour alone.
-- Coral is an accent, not a second primary. At most one coral element per
+- Amber is an accent, not a second primary. At most one amber element per
   screen, plus the mascot.
 - Chart bars use a three step ramp keyed to magnitude at full opacity, not a
   rainbow and not varying opacity: `primary-mid` below 20 percent, `primary`
@@ -78,6 +98,58 @@ distinction: it is what makes the custom form controls pass an audit.
 - Never encode anything in a gradient or a shadow alone. Both are dropped in
   print, so each must be backed by a border, a stroke, or text.
 - Do not introduce a new colour without adding it to this table first.
+
+## PillPal, the mascot
+
+Lives in `src/components/PillPal.jsx`. One capsule character drawn on a 200 by
+240 viewBox, with 15 poses that share the same body so he stays recognisably
+himself from screen to screen.
+
+`waving`, `thumbsUp`, `holdingClipboard`, `pointing`, `thinking`, `reading`,
+`talking`, `reassuring`, `celebrating`, `shrugging`, `sitting`, `magnifying`,
+`presentingChart`, `sleeping`, `walking`.
+
+Standalone assets: `public/pillpal-mark.svg` for the mark at large sizes,
+`public/favicon.svg` for the app icon, `public/pillpal-tile.svg` for the
+background watermark.
+
+### Mascot rules
+
+- **PillPal never appears beside a disclaimer.** The mascot carries warmth, and
+  warmth next to a boundary note reads as medical reassurance. He belongs at
+  entry points and beside neutral framing, never beside `BoundaryNote`.
+- He never gives advice. Nothing he is placed next to may be phrased as an
+  instruction to take or avoid a drug.
+- Prefer a neutral pose over a celebratory one anywhere near results. A
+  cheering mascot beside a risk profile reads as a verdict on it.
+- The art uses the literal brand hexes, not theme tokens. PillPal is the same
+  character in light and dark, the way a logo is. Only the eyes adapt, since
+  brand Navy sinks into the dark surface.
+- He does not animate. See the motion rules below.
+
+### Scale
+
+Fine detail turns to mud when the mark is small, so it is dropped rather than
+shrunk. The component handles this from its `size` prop:
+
+| Size | What is drawn |
+|---|---|
+| 24px and up | Everything: cheeks, shine, eye highlights, mouth |
+| 16px to 23px | No cheeks, no shine, no eye highlights |
+| 16px and below | Mouth also dropped, leaving the capsule and two eyes |
+
+Pass `decorative` when the mark sits next to the word MyPillPal, so a screen
+reader does not announce the name twice.
+
+## Background watermark
+
+A tiled PillPal pattern sits behind the page at 5 percent opacity, 7 percent in
+dark mode. It is `position: fixed` at `z-index: -1` with pointer events off, so
+it stays clear of the sticky header, the `Select` popover, and every focus ring.
+
+Cards and panels keep an opaque `surface` background, which is what keeps every
+ratio in the contrast table above true: no body copy is ever read against the
+watermark. It is hidden entirely in print.
 
 ## Typography
 

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 132" width="160" height="264">
+  <!--
+    The PillPal mark on its own, at full detail. This is the primary logo from
+    the brand sheet: use it for the README, the deck, and anywhere the mark
+    needs to stand alone at a large size.
+  -->
+  <ellipse cx="40" cy="128" rx="28" ry="6" fill="#4A9FB5" opacity="0.12"/>
+  <path d="M4,66 L4,94 Q4,128 40,128 Q76,128 76,94 L76,66 Z" fill="#D6EEF4"/>
+  <path d="M4,66 L4,38 Q4,4 40,4 Q76,4 76,38 L76,66 Z" fill="#4A9FB5"/>
+  <rect x="4" y="64" width="72" height="4" fill="#3B8FA5"/>
+  <ellipse cx="57" cy="20" rx="9" ry="5.5" fill="white" opacity="0.18" transform="rotate(-35,57,20)"/>
+  <circle cx="27" cy="45" r="6" fill="#1C3D4A"/>
+  <circle cx="25" cy="43" r="2" fill="white" opacity="0.65"/>
+  <circle cx="53" cy="45" r="6" fill="#1C3D4A"/>
+  <circle cx="51" cy="43" r="2" fill="white" opacity="0.65"/>
+  <path d="M27,78 Q40,92 53,78" stroke="#3B8FA5" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="18" cy="56" rx="5" ry="3.5" fill="#C47A3A" opacity="0.22"/>
+  <ellipse cx="62" cy="56" rx="5" ry="3.5" fill="#C47A3A" opacity="0.22"/>
+</svg>

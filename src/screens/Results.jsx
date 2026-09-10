@@ -20,7 +20,8 @@ import ResistanceChart from '../components/ResistanceChart.jsx'
 import RiskGauge from '../components/RiskGauge.jsx'
 import SourceChip from '../components/SourceChip.jsx'
 import { Card, Eyebrow, Section } from '../components/Card.jsx'
-import { CheckIcon, PillPal, PrinterIcon } from '../components/Icons.jsx'
+import { CheckIcon, PrinterIcon } from '../components/Icons.jsx'
+import PillPal from '../components/PillPal.jsx'
 
 /*
   Screen 4, the payoff. Four sections, in the order the PRD sets out:
@@ -69,7 +70,16 @@ export default function Results({
             {`For ${infection.shortName} in ${regionInPhrase(region)}.`}
           </p>
         </div>
-        <PillPal size={72} className="hidden shrink-0 sm:block print:hidden" />
+        {/*
+          A neutral presenting pose, not a celebratory one. This heading block
+          sits directly above the boundary note, and a cheering mascot beside a
+          set of results would read as reassurance about them.
+        */}
+        <PillPal
+          size={76}
+          pose="presentingChart"
+          className="hidden shrink-0 sm:block print:hidden"
+        />
       </div>
 
       <BoundaryNote tone="results" className="mt-6" />
@@ -90,7 +100,7 @@ export default function Results({
 
             {risk.contributingFactors.length === 0 ? (
               <Card tone="tint" pad="md" className="mt-5 flex items-center gap-4">
-                <PillPal size={48} pose="hold" className="shrink-0" />
+                <PillPal size={52} pose="reassuring" className="shrink-0" />
                 <p className="text-body text-ink">
                   No risk factors ticked. Regional resistance still matters, so
                   section B is worth a read.

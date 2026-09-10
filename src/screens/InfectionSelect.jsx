@@ -8,8 +8,8 @@ import {
   GlobeIcon,
   InfectionIcon,
   MapPinIcon,
-  PillPal,
 } from '../components/Icons.jsx'
+import PillPal from '../components/PillPal.jsx'
 
 const STAT_ICONS = [GlobeIcon, MapPinIcon, AlertIcon]
 
@@ -48,7 +48,7 @@ export default function InfectionSelect({ selectedId, onSelect }) {
             The mascot belongs here, at the entry point, and nowhere near the
             boundary note in the footer. See the PRD mascot rule.
           */}
-          <PillPal size={92} pose="wave" className="hidden shrink-0 sm:block" />
+          <PillPal size={96} pose="waving" className="hidden shrink-0 sm:block" />
         </div>
       </div>
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 import BoundaryNote from './BoundaryNote.jsx'
-import { PillPal } from './Icons.jsx'
+import PillPal from './PillPal.jsx'
 
 const STEPS = [
   { id: 'infection', label: 'Infection' },
@@ -51,7 +51,8 @@ export default function Layout({ step, children }) {
     <div className="flex min-h-screen flex-col bg-ground">
       <header className="sticky top-0 z-30 border-b border-border bg-surface/85 backdrop-blur-md print:hidden">
         <div className="mx-auto flex max-w-5xl items-center gap-2.5 px-5 py-3.5 sm:px-8">
-          <PillPal size={34} />
+          {/* Decorative: the wordmark beside it already says the name. */}
+          <PillPal size={30} pose="reassuring" decorative />
           <span className="display text-h3 font-bold tracking-tight text-ink">
             MyPillPal
           </span>

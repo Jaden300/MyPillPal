@@ -1,3 +1,5 @@
+<img src="public/pillpal-mark.svg" alt="PillPal, the MyPillPal mascot" width="88" align="right" />
+
 # MyPillPal
 
 **Antibiotic resistance, explained for the person taking the antibiotics.**
@@ -99,3 +101,11 @@ from published studies. The full list with citation rules is in
 - [docs/conventions.md](docs/conventions.md) palette, typography, and voice
 - [docs/data-sources.md](docs/data-sources.md) citations
 - [docs/tasks.md](docs/tasks.md) build progress
+
+---
+
+<p align="center">
+  <img src="public/pillpal-mark.svg" alt="PillPal, the MyPillPal mascot" width="72" />
+  <br />
+  <em>PillPal is here for the conversation, not the diagnosis.</em>
+</p>
