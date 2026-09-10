@@ -65,6 +65,26 @@ when you close the tab.
 
 React, Vite, and Tailwind CSS. Static JSON data, static build, no server.
 
+## Running locally
+
+```
+npm install
+npm run dev
+```
+
+The dev server prints a local URL. To check the production build:
+
+```
+npm run build
+npm run preview
+```
+
+## Deploying
+
+The build output in `dist/` is a static bundle that any static host can serve.
+The live version is deployed on Vercel: push to `main` and Vercel builds and
+publishes automatically.
+
 ## Data sources
 
 Resistance figures come from the CDC AR and Patient Safety Portal, the WHO
