@@ -47,8 +47,13 @@ export default function Layout({ step, children }) {
 
   const stepLabel = isAssessmentStep ? STEPS[currentIndex].label : 'Printable summary'
 
+  /*
+    The wrapper below carries no background colour. body already paints the
+    ground, and the PillPal watermark sits between the two. An opaque bg on
+    this full height wrapper covers the watermark for the entire viewport.
+  */
   return (
-    <div className="flex min-h-screen flex-col bg-ground">
+    <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-30 border-b border-border bg-surface/85 backdrop-blur-md print:hidden">
         <div className="mx-auto flex max-w-5xl items-center gap-2.5 px-5 py-3.5 sm:px-8">
           {/* Decorative: the wordmark beside it already says the name. */}
@@ -125,6 +130,11 @@ export default function Layout({ step, children }) {
         {children}
       </main>
 
+      {/*
+        This bg-ground is deliberate, unlike the wrapper's. The footer holds
+        BoundaryNote, and PillPal never appears beside a disclaimer. The opaque
+        ground keeps the watermark out of the boundary band.
+      */}
       <footer className="mt-8 border-t border-border bg-ground print:hidden">
         <div className="mx-auto max-w-5xl px-5 py-6 sm:px-8">
           <BoundaryNote tone="footer" />

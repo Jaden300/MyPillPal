@@ -238,7 +238,7 @@
     background-image: url('/pillpal-tile.svg');
     background-repeat: repeat;
     background-size: 360px 360px;
-    opacity: 0.1;
+    opacity: 0.055;
     pointer-events: none;
   }
 
@@ -255,7 +255,7 @@
 
   @media (prefers-color-scheme: dark) {
     body::before {
-      opacity: 0.13;
+      opacity: 0.075;
     }
   }
 
